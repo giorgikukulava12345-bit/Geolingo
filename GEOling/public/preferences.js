@@ -1,0 +1,1 @@
+(()=>{let language='ka',theme='light';try{language=localStorage.getItem('geolingo-ui-language')==='en'?'en':'ka';theme=localStorage.getItem('geolingo-theme')==='dark'?'dark':'light'}catch{}document.documentElement.lang=language;document.documentElement.dataset.theme=theme;})();
