@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ka">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Giolingo — განახლება</title>
+<style>body{font-family:system-ui,sans-serif;background:#fafcf5;color:#203c38;display:grid;place-items:center;min-height:90vh;margin:0}main{max-width:480px;padding:32px;text-align:center}h1{color:#19895d}a,button{display:inline-block;background:#19895d;color:white;padding:14px 24px;border:0;border-radius:12px;font:inherit;text-decoration:none}p{line-height:1.8}</style>
+<main><h1>Giolingo ✦</h1><h2 id="status">საიტი ახლდება…</h2><p>ქულები, პროგრესი და ანგარიშის მონაცემები შენარჩუნდება.</p><a id="open" href="/?updated=20261021" hidden>გახსენი ახალი Giolingo</a><p id="error"></p></main>
+<script>
+(async () => {
+  try {
+    if ('serviceWorker' in navigator) {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(registrations.filter(reg => {
+        const worker = reg.active || reg.waiting || reg.installing;
+        return worker && new URL(worker.scriptURL).pathname === '/sw.js';
+      }).map(reg => reg.unregister()));
+    }
+    if ('caches' in window) {
+      const keys = await caches.keys();
+      await Promise.all(keys.filter(key => /^geolingo-v\d+-/.test(key)).map(key => caches.delete(key)));
+    }
+    document.getElementById('status').textContent = 'ახალი Giolingo მზადაა!';
+  } catch (error) {
+    document.getElementById('status').textContent = 'გახსენი ახალი Giolingo';
+    document.getElementById('error').textContent = 'თუ ძველი გვერდი კვლავ გამოჩნდა, დააჭირე Ctrl + Shift + R.';
+  }
+  document.getElementById('open').hidden = false;
+})();
+</script>
+</html>
