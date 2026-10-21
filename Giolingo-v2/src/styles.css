@@ -12,3 +12,31 @@
 @media(max-width:640px){.sidebar{height:77px;padding:0}.sidebar nav{overflow-x:auto;justify-content:flex-start;width:100%;margin:0;gap:0}.sidebar nav button{min-width:82px;flex-shrink:0;font-size:8px;padding:12px 6px;white-space:nowrap}.level-toolbar{gap:10px}.level-tabs{width:100%;justify-content:space-between}.level-tabs button{padding:9px 17px}.level-toolbar .text-button{margin-left:auto;margin-bottom:3px}.landing-header>.secondary{font-size:9px;padding:9px}.landing-header .brand{font-size:29px}.mode-tabs button{font-size:13px}.study-card{padding:22px 17px}.study-card h2{font-size:22px}.study-card>p{font-size:15px}.study-actions{flex-wrap:wrap}.study-actions>.primary{margin-left:auto}.study-rule{padding:16px}.panel{padding:22px 18px}.matching .match-with-audio{gap:5px}.matching .match-with-audio>button{font-size:10px;padding:10px 5px}.matching .match-with-audio .audio-button{padding:6px;min-width:29px;min-height:32px}.matching .audio-button svg{width:14px}.placement-invite{flex-direction:column;gap:8px;align-items:start}.exercise-tip{gap:10px}.exercise-tip .mini-mascot{width:45px;height:45px;flex-shrink:0}.study-phase{margin-top:30px}.choice-with-audio .audio-button{padding:8px}.choices button{font-size:14px;padding:13px}.choices kbd{display:none}.page-heading h1{font-size:22px}}
 @media(max-width:640px){.lesson-brand{display:block;font-size:18px;letter-spacing:-.7px;white-space:nowrap}.lesson-top{gap:9px}.lesson-top>.red{font-size:12px}.lesson-top>.red svg{width:18px}}
 
+/* Flexible text and touch controls for the larger curriculum. */
+.language-flag{display:block;flex-shrink:0;filter:drop-shadow(0 1px 1px #203c3810)}
+.unit-tabs{overflow-x:auto;justify-content:flex-start;gap:9px;scroll-snap-type:x proximity;padding:6px 2px 13px;scrollbar-width:thin}
+.unit-tabs button{min-width:44px;min-height:44px;flex-shrink:0;scroll-snap-align:nearest}
+.main-content,.node-label,.example-row>div,.grammar-examples>div>span,.choice-with-audio>button,.match-with-audio>button{min-width:0;overflow-wrap:anywhere}
+.grammar-unit>p,.grammar-task{line-height:2;margin-top:18px}
+.audio-control>small{line-height:1.7;text-align:center}
+.audio-button{min-width:44px;min-height:44px}
+.settings-stack summary{cursor:pointer}
+@media(max-width:640px){
+ .topbar{gap:6px;padding-inline:12px}.mobile-brand{font-size:23px}
+ .course-switch{position:relative;width:42px;min-height:44px;flex-shrink:0;justify-content:center}
+ .course-switch>.language-flag{display:block;width:28px;height:22px}
+ .course-switch select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+ .course-switch:focus-within{outline:3px solid #36ae87;border-radius:8px}
+ .stats{gap:9px;font-size:14px}.stats>button{min-height:44px;min-width:36px}
+ .sidebar{height:calc(77px + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom)}
+ .workspace{padding-bottom:calc(90px + env(safe-area-inset-bottom))}
+ input,select,textarea{font-size:16px!important}
+ .lesson-shell{min-height:100dvh;padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+ .matching{gap:8px;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .matching button,.matching .match-with-audio>button{min-height:44px;overflow-wrap:anywhere}
+ .matching .match-with-audio .audio-button{min-width:40px;min-height:44px}
+ .study-actions button{min-height:44px}.level-tabs button{min-width:44px;padding-inline:12px}
+ .node-label small{font-size:10px;line-height:1.6}.node-label b{font-size:12px}
+ .grammar-examples{padding:8px 10px}.grammar-examples>div{gap:8px}
+ .audio-control>small{max-width:135px}.lesson-top>.progress-track{min-width:30px}
+}
