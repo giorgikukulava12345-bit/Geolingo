@@ -1,3 +1,4 @@
+import {expansion} from './expansion.js';
 import {advanced,kidsTopics} from './advanced.js';
 import {grammarFor} from './grammar.js';
 export const LEVELS=['A1','A2','B1','B2','C1'];
@@ -17,7 +18,9 @@ export function createCourses(topics){return Object.fromEntries(['en','ru'].map(
  function makeUnit({id,title,icon,level,lessonTitles,rows,lessons,unitIndex,mode='adult'}){const rule=grammarFor(language,level,unitIndex);return {id,title,icon,level,mode,description:`${level} · ${rule.title}`,grammar:rule,lessons:(lessons||lessonTitles.map((t,i)=>[t,...rows.slice(i*4,i*4+4)])).map(([name,...data],li)=>{const entries=entriesFrom(data);return {id:level==='A1'&&mode==='adult'?`${language}-u${unitIndex+1}-l${li+1}`:`${language}-${mode}-${level}-u${unitIndex+1}-l${li+1}`,title:name,level,mode,unitId:id,grammar:rule,entries,questions:makeQuestions(entries,mode==='kids')};})};}
  const base=topics.map(([title,icon,lessons],i)=>makeUnit({id:`${language}-u${i+1}`,title,icon,lessons,level:'A1',unitIndex:i}));
  const extra=advanced.map((u,i)=>makeUnit({id:`${language}-${u.level}-u${i%4+1}`,title:u.title,icon:u.icon,level:u.level,rows:u.rows,lessonTitles:u.lessons,unitIndex:i%4}));
+ const added=expansion.map((u,i)=>makeUnit({id:language+'-extension-'+i,title:u.title,icon:u.icon,level:u.level,rows:u.rows,lessonTitles:u.lessons,unitIndex:100+i}));
  const kids=kidsTopics.map(([title,icon,lessonTitles,rows],i)=>makeUnit({id:`${language}-kids-u${i+1}`,title,icon,lessonTitles,rows,level:'A1',mode:'kids',unitIndex:i}));
- return [language,{id:language,name:language==='en'?'ინგლისური':'რუსული',flag:language==='en'?'🇬🇧':'🇷🇺',native:language==='en'?'English':'Русский',units:[...base,...extra],kidsUnits:kids}];
+ return [language,{id:language,name:language==='en'?'ინგლისური':'რუსული',flag:language==='en'?'🇬🇧':'🇷🇺',native:language==='en'?'English':'Русский',units:[...base,...extra,...added].sort((a,b)=>LEVELS.indexOf(a.level)-LEVELS.indexOf(b.level)),kidsUnits:kids}];
 }));}
 export function isUnlocked(lesson,course,state){const units=state.mode==='kids'?course.kidsUnits:course.units;const flat=units.flatMap(u=>u.lessons);const i=flat.findIndex(l=>l.id===lesson.id);if(i<0)return false;if(state.completed.includes(lesson.id))return true;const start=state.placements?.[course.id]?.level||'A1';if(state.mode!=='kids'&&LEVELS.indexOf(lesson.level)<LEVELS.indexOf(start))return true;const same=flat.filter(l=>l.level===lesson.level);if(lesson.id===same[0]?.id&&(lesson.level===start||lesson.level==='A1'))return true;return i===0||state.completed.includes(flat[i-1]?.id);}
+
