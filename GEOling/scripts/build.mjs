@@ -1,0 +1,13 @@
+import {mkdir,cp,rm,readdir,readFile,writeFile} from 'node:fs/promises';
+import {resolve,dirname,join} from 'node:path';
+import {createHash} from 'node:crypto';
+const project=process.cwd(),out=resolve(project,'dist');
+if(dirname(out)!==project||!out.endsWith('dist'))throw Error('Unexpected output directory');
+const blocked=new Set(['crosswords.js','config.js']);
+const names=(await readdir('public')).filter(name=>!blocked.has(name)&&name!=='sw.js');
+const revision=createHash('sha256');for(const name of names)revision.update(await readFile(join('public',name)));
+const cacheName='geolingo-v4-'+revision.digest('hex').slice(0,12),assets=['./','./index.html',...names.filter(n=>n!=='index.html').map(n=>'./'+n)];
+const sw=`const CACHE=${JSON.stringify(cacheName)},ASSETS=${JSON.stringify(assets)};\nself.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting())));\nself.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('geolingo-v4-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));\nself.addEventListener('fetch',event=>{if(event.request.method!=='GET'||new URL(event.request.url).origin!==self.location.origin)return;event.respondWith(caches.open(CACHE).then(async cache=>(await cache.match(event.request))||fetch(event.request)));});\n`;
+await writeFile('public/sw.js',sw);await rm(out,{recursive:true,force:true});await mkdir(out,{recursive:true});
+for(const name of [...names,'sw.js'])await cp(join('public',name),join(out,name));
+console.log('Built static Geolingo v4 → '+out+' · '+cacheName);

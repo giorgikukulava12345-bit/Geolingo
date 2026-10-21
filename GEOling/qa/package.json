@@ -1,0 +1,1 @@
+{"private":true,"type":"module","scripts":{"test":"node features-v4.mjs && node lessons-v4.mjs && node microphone-v4.mjs"},"dependencies":{"jsdom":"30.1.3"},"engines":{"node":">=24"}}

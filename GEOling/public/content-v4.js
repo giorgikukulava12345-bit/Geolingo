@@ -1,0 +1,11 @@
+import {listeningBank as legacyListening} from './listening-v3.js';
+import {grammarBank as legacyGrammar} from './grammar-v4.js';
+import {conversationBank as legacyConversations} from './conversations-v3.js';
+import {conversationExtra} from './conversations-extra-v4.js';
+import {newReadings} from './readings-extra-v4.js';
+import {readingBank as legacyReading} from './reading-content.js';
+import {newCourses,newGrammar} from './catalog-v4.js';
+export const grammarBank={...legacyGrammar,...newGrammar};
+export const conversationBank=legacyConversations.map(c=>({...c,turns:c.turns.map((turn,i)=>({...turn,zh:conversationExtra[c.id].zh[i],es:conversationExtra[c.id].es[i]}))}));
+export const listeningBank={...legacyListening,...Object.fromEntries(Object.entries(newCourses).map(([target,modules])=>[target,modules.map(m=>({...m,items:m.items.map(i=>({...i,[target]:i.text}))}))]))};
+export const readingBank={...legacyReading,zh:newReadings.filter(s=>s.target==='zh').map(s=>({...s,ka:s.translation.ka,level:s.level==='A0'?'საწყისი':s.level,questions:[]})),es:newReadings.filter(s=>s.target==='es').map(s=>({...s,ka:s.translation.ka,level:s.level==='A0'?'საწყისი':s.level,questions:[]}))};

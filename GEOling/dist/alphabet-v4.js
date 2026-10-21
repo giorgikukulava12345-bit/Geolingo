@@ -1,0 +1,8 @@
+export const extraAlphabet={
+es:'A|a;B|be;C|ce;D|de;E|e;F|efe;G|ge;H|hache;I|i;J|jota;K|ka;L|ele;M|eme;N|ene;Ñ|eñe;O|o;P|pe;Q|cu;R|erre;S|ese;T|te;U|u;V|uve;W|uve doble;X|equis;Y|ye;Z|zeta'.split(';').map(s=>s.split('|')),
+zh:'妈|mā · 1;麻|má · 2;马|mǎ · 3;骂|mà · 4;吗|ma · 0;你好|nǐ hǎo;谢谢|xièxie;中国|Zhōngguó;北京|Běijīng;人|rén;水|shuǐ;书|shū;吃|chī;去|qù;学|xué;一|yī;二|èr;三|sān'.split(';').map(s=>s.split('|'))
+};
+export const extraAlphabetNotes={
+es:{ka:'ესპანურში 27 ასოა: ñ ცალკე ასოა. h ჩვეულებრივ არ იკითხება. rr და r განსხვავდება, ხოლო b/v ბევრ დიალექტში ერთნაირად ჟღერს. მახვილის ნიშანს ყურადღება მიაქციე: sí და si სხვადასხვა სიტყვებია.',en:'Spanish has 27 letters: ñ is a separate letter. H is usually silent. R and rr contrast; b/v share a sound in many varieties. Written accents matter: sí and si are different words.',ru:'В испанском 27 букв: ñ — отдельная буква. H обычно не произносится. R и rr различаются, а b/v во многих вариантах звучат одинаково. Знаки ударения важны: sí и si — разные слова.'},
+zh:{ka:'ჩინური იეროგლიფებით იწერება და ასოებრივი ანბანი არ აქვს. Pinyin გამოთქმის ლათინური ჩანაწერია. ოთხი ძირითადი ტონი და ნეიტრალური ტონი მნიშვნელობას ცვლის: mā, má, mǎ, mà. მესამე ტონი საუბარში კონტექსტის მიხედვით იცვლება; 你好 ჩვეულებრივ ní hǎo-ს უახლოვდება.',en:'Chinese uses characters rather than an alphabet. Pinyin is a Latin transcription. Four main tones and a neutral tone can change meaning: mā, má, mǎ, mà. Third tones change in connected speech; 你好 is commonly pronounced close to ní hǎo.',ru:'Китайский использует иероглифы, а не буквенный алфавит. Pinyin — латинская запись произношения. Четыре основных и нейтральный тон меняют значение: mā, má, mǎ, mà. В связной речи третий тон меняется; 你好 обычно звучит близко к ní hǎo.'}
+};
