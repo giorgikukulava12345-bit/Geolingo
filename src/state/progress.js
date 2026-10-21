@@ -1,0 +1,6 @@
+export const STORAGE_KEY='giolingo.progress.v1';
+export const initialProgress={version:1,language:null,xp:0,hearts:5,streak:0,lastDay:null,completed:[],daily:{}};
+export function localDay(date=new Date()){return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;}
+export function activeStreak(state,date=new Date()) {const yesterday=new Date(date);yesterday.setDate(yesterday.getDate()-1);return [localDay(date),localDay(yesterday)].includes(state.lastDay)?state.streak:0;}
+export function loadProgress(storage){try{const s=JSON.parse(storage.getItem(STORAGE_KEY));if(s?.version!==1)return initialProgress;return {...initialProgress,...s,language:['en','ru'].includes(s.language)?s.language:null,xp:Math.max(0,Number(s.xp)||0),hearts:Math.min(5,Math.max(0,Number(s.hearts)||0)),streak:Math.max(0,Number(s.streak)||0),completed:Array.isArray(s.completed)?s.completed.filter(x=>typeof x==='string'):[],daily:s.daily&&typeof s.daily==='object'?s.daily:{}};}catch{return initialProgress;}}
+export function completeLesson(state,id,xp,date=new Date()){const today=localDay(date);return {...state,xp:state.xp+xp,streak:state.lastDay===today?state.streak:activeStreak(state,date)+1,lastDay:today,completed:[...new Set([...state.completed,id])],daily:{...state.daily,[today]:(state.daily[today]||0)+xp}};}
