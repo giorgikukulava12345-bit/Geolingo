@@ -1,0 +1,17 @@
+import {shuffled} from './courseFactory.js';
+// Independent grammar diagnostics; no answer feedback until completion.
+const raw={en:[
+['A1','She ___ a teacher.','is','am','are','be'],['A1','I have ___ apple.','an','a','the a','any an'],['A1','He ___ every day.','works','work','working','to work'],['A1','___ you like tea?','Do','Does','Is','Are'],
+['A2','Yesterday we ___ to the park.','went','go','going','goes'],['A2','This bag is ___ than that one.','cheaper','cheap','cheapest','more cheap than'],['A2','Look! It ___.','is raining','rains','rain','rained'],['A2','You ___ drink more water.','should','should to','must to','can to'],
+['B1','I ___ never been to London.','have','am','did','was'],['B1','If it rains, we ___ at home.','will stay','would stayed','staying','stayed'],['B1','She enjoys ___ books.','reading','read','to reading','reads'],['B1','The person ___ called is my friend.','who','which','where','whose name'],
+['B2','If I had known, I ___ helped.','would have','will have','had','would'],['B2','The results ___ tomorrow.','will be published','will publish','published','have publish'],['B2','He said he ___ come later.','would','will be','has','can to'],['B2','___ the rain, we went outside.','Despite','Although','Even','Because'],
+['C1','Only later ___ the mistake.','did we realise','we did realise','we realised did','had realise'],['C1','Under no circumstances ___ accuracy.','should we compromise','we should compromise','we compromising','should compromise we'],['C1','The evidence does not ___ imply causation.','necessarily','necessary','necessity','necessitate'],['C1','What matters ___ how we apply it.','is','are','do','be']
+],ru:[
+['A1','Это ___ книга.','моя','мой','моё','мои'],['A1','Я ___ по-русски.','говорю','говоришь','говорит','говорят'],['A1','У меня ___ брат.','есть','быть','была','будет был'],['A1','Мы ___ дома.','сейчас','есть быть','быть','являться'],
+['A2','Вчера она ___ книгу.','читала','читал','читали','читать'],['A2','Я иду ___ школу.','в','на','из','к'],['A2','У меня нет ___.','книги','книга','книгу','книгой'],['A2','Эта сумка ___ той.','дешевле','дешёвый','дешёвая чем','дёшево'],
+['B1','Курс помогает ___ учиться.','мне','меня','мной','я'],['B1','Это статья, ___ я прочитал.','которую','которая','которой','которым'],['B1','На твоём месте я ___ спросил.','бы','буду','есть','был бы быть'],['B1','Я готовлюсь ___ экзамену.','к','в','на','из'],
+['B2','Проект уже ___.','завершён','завершить','завершая','завершают'],['B2','Данные, ___ вчера, важны.','полученные','полученный','получив','получать'],['B2','Если бы я знал, я ___ помог.','бы','буду','есть','могу был'],['B2','___ на дождь, мы вышли.','Несмотря','Хотя','Потому','Благодаря'],
+['C1','___ итог, мы выделяем три вопроса.','Подводя','Подведя мы','Подведённый','Подвести'],['C1','Именно прозрачности ___ этому процессу.','не хватает','не хватают','не хватать','не хватает есть'],['C1','Решение должно быть ___.','обоснованным','обоснованный','обоснованная','обоснованному'],['C1','По всей ___, тенденция сохранится.','видимости','видимость','видимостью','видимостей']
+]};
+export const placementQuestions=language=>raw[language].map(([level,prompt,answer,...other],i)=>({level,prompt,answer,options:shuffled([answer,...other],`${language}-${i}-${prompt}`)}));
+export function recommendLevel(results){let recommended='A1';for(const level of ['A1','A2','B1','B2']){const group=results.filter(r=>r.level===level);if(group.length!==4||group.filter(r=>r.correct).length<3)break;recommended=({A1:'A2',A2:'B1',B1:'B2',B2:'C1'})[level];}return recommended;}
