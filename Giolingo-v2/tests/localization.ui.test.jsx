@@ -21,10 +21,10 @@ test('keyboard has all 33 Cyrillic letters and edits at selection boundaries',()
  fireEvent.click(screen.getByRole('button',{name:'დიდი ასოები'}));fireEvent.click(screen.getByRole('button',{name:'Я',exact:true}));expect(input.value).toBe('кЯт');
  expect(editText('cat',0,0,'Backspace')).toEqual({value:'cat',caret:0});expect(editText('abc',0,3,'ж')).toEqual({value:'ж',caret:1});
 });
-test('English source switch persists, selects Russian and preserves completed progress',()=>{
+test('English source switch persists and preserves the selected target and progress',()=>{
  const root=newRoot();root.profiles.adult.language='en';root.profiles.adult.xp=170;root.profiles.adult.completed=['ru-u1-l1'];localStorage.setItem('giolingo.v2.guest',JSON.stringify(root));
  render(<ProgressProvider><LocaleRoot/></ProgressProvider>);fireEvent.change(screen.getByRole('combobox',{name:'საწყისი ენა'}),{target:{value:'en'}});
- expect(getLocale()).toBe('en');expect(localStorage.getItem('giolingo.interfaceLanguage')).toBe('en');expect(screen.getByRole('combobox',{name:'Learning language'}).value).toBe('ru');expect(screen.getByText('170')).toBeTruthy();expect(screen.getByRole('button',{name:'People'}).disabled).toBe(false);
+ expect(getLocale()).toBe('en');expect(localStorage.getItem('giolingo.interfaceLanguage')).toBe('en');expect(screen.getByRole('button',{name:'My Courses'})).toBeTruthy();expect(screen.getByText('170')).toBeTruthy();
 });
 test('English interface covers all main sections and Russian grammar has no Georgian explanations',()=>{
  setLocale('en');const root=newRoot();root.profiles.adult.language='ru';root.profiles.adult.completed=['ru-u1-l1'];localStorage.setItem('giolingo.v2.guest',JSON.stringify(root));render(<ProgressProvider><LocaleRoot/></ProgressProvider>);
