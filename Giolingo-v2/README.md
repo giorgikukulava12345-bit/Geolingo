@@ -45,9 +45,7 @@ npm run dev
 4. შედი ელფოსტითა და პაროლით. მდგომარეობა „✓ პროგრესი ანგარიშში შენახულია“ ადასტურებს წარმატებულ სინქრონიზაციას.
 5. ძველი სტუმრის პროგრესი ანგარიშში ავტომატურად არ გადაიწერება. გადასატანად პარამეტრებში დააჭირე **„სტუმრის პროგრესის გადატანა“**. ღილაკი ანგარიშის პროგრესის ჩანაცვლებას წინასწარ შეგატყობინებს.
 
-Supabase-ში ელფოსტით რეგისტრაცია ჩართულია და მისამართის დადასტურება სავალდებულოა. რეალური საფოსტო ყუთით წერილის მიღება ამ განახლებაზე არ შემოწმებულა. თუ ბმული სხვა მისამართზე გადაგიყვანს, **Authentication → URL Configuration**-ში დაამატე შენი ადგილობრივი მისამართი (`http://localhost:5173`) და გამოქვეყნების შემდეგ — რეალური HTTPS დომენი. ყველა მისამართი, რომელზეც რეგისტრირდები, შესაბამის Redirect URLs-ში უნდა იყოს დაშვებული. იხილე [Supabase redirect URLs](https://supabase.com/docs/guides/auth/redirect-urls).
 
-საჯარო მომხმარებლებთან რეგისტრაციისთვის შეამოწმე პროექტის SMTP პარამეტრები. Supabase-ის ნაგულისხმევ საფოსტო სერვისს ადრესატებისა და სიხშირის შეზღუდვები აქვს; საჭიროების შემთხვევაში დააკავშირე საკუთარი SMTP პროვაიდერი. იხილე [Custom SMTP](https://supabase.com/docs/guides/auth/auth-smtp).
 
 ახალი `public.giolingo_learning_state` ცხრილი უკვე შექმნილია. `database/schema.sql` მისი საცნობარო ასლია; იმავე პროექტში თავიდან ნუ გაუშვებ. ძველი `profiles` და `completions` ცხრილები არ შეცვლილა. მონაცემებს მხოლოდ ავტორიზებული მფლობელი კითხულობს/ცვლის (RLS). სტუმარი ამ ცხრილზე წვდომას ვერ იღებს.
 
@@ -154,3 +152,8 @@ giolingo/
 ხმა მხოლოდ მომხმარებლის ღილაკით ირთვება. ბრაუზერმა შეიძლება აუდიო ამოცნობის სერვისს გადასცეს. Giolingo აუდიოს არ ინახავს და თავისუფალ მონოლოგს გამოთქმის პროფესიულ შეფასებად არ წარმოადგენს. ხმის ან მიკროფონის მხარდაჭერის გარეშე შესაძლებელია ტექსტის ნიმუშითა და წერითი ალტერნატივით სწავლა. პლატფორმის ჯილდოები კლიენტში ითვლება და საჯარო კონკურსისთვის დაცული ქულები არ არის.
 
 activities, claims და joinedCourses ინახება არსებულ profile JSON-ში, დამოუკიდებლად Adult/Kids სივრცისთვის. ბაზის სქემა არ შეცვლილა. დამატებულია 8 რეგრესიული ტესტი; სულ 42 ტესტი გადის. ბრაუზერში გადამოწმდა თემის, XP-ისა და სერიის შენახვა reload-ის შემდეგ და მობილური 320px განლაგება. ფიზიკურ iOS/Android მოწყობილობაზე მიკროფონი არ დატესტილა.
+
+## Registration without confirmation
+Choose Email + password or Username + password. Usernames accept 3–24 Unicode letters, numbers and underscores; case and surrounding spaces are normalized. The username is mapped to a deterministic SHA-256 identifier at the reserved non-deliverable users.giolingo.invalid domain for Supabase password authentication. This is not a contact email. Display metadata is never used for authorization; owner RLS uses auth.uid(). Username-only accounts cannot recover a forgotten password by email.
+
+Deployment prerequisite: Supabase Authentication → Sign In / Providers → Email → Confirm email must be OFF. Signup must return a session immediately; the UI does not pretend registration succeeded when the server returns no session. No OTP, confirmation-link or verification-mail call exists in the application. Keep password validation, session refresh and RLS enabled. Supabase itself manages authentication internals; do not delete auth system token columns or disable ownership checks.
