@@ -1,3 +1,4 @@
+import {englishGrammarEnglish} from '../i18n/englishGrammar.js';
 import {getLocale,englishText} from '../i18n.js';
 import {russianGrammarEnglish} from '../i18n/russianGrammar.js';
 import {grammarExtras} from './grammarExtras.js';
@@ -17,6 +18,6 @@ export const grammar = {
  C1:[['აკადემიური დაზუსტება','предположительно, по-видимому, в определённой степени მტკიცების ძალას აზუსტებს. вводные слова ხშირად მძიმეებით გამოიყოფა. მტკიცებულებისა და ვარაუდის გამიჯვნა აუცილებელია.',['По-видимому, тенденция сохранится.','Это не обязательно означает причинность.','Данные частично подтверждают гипотезу.']],['ემფაზა და სიტყვათწყობა','რუსულში სიტყვათწყობა შედარებით მოქნილია და აქცენტს ცვლის. именно გამოყოფს მნიშვნელოვან ნაწილს. английский inversion-ის მექანიკური გამეორება არ გამოიყენო.',['Именно прозрачности не хватает этому процессу.','Лишь позднее мы осознали ошибку.','Ни в коем случае нельзя жертвовать точностью.']],['სახელური სტილი და უპირო ფორმები','ოფიციალურ ტექსტში გამოიყენება отглагольные существительные და უპირო კონსტრუქციები: необходимо, следует. ზედმეტი სახელური ჯაჭვი წაკითხვას ართულებს.',['Необходимо учитывать последствия.','Оценка рисков требует данных.','Следует соблюдать соразмерность.']],['კოჰეზია და სინთეზი','таким образом, следовательно, подводя итог დასკვნას აყალიბებს. деепричастие-ს შემსრულებელი მთავარი ზმნის შემსრულებელს უნდა ემთხვეოდეს.',['Подводя итог, мы выделяем три вопроса.','Таким образом, необходим дальнейший анализ.','Достигнутый прогресс создаёт основу для работы.']]]}
 };
 for(const language of ['en','ru'])for(const level of Object.keys(grammar[language]))grammar[language][level].push(...grammarExtras[language][level]);
-export const getGrammar=(language,level,source=getLocale())=>source==='en'&&language==='ru'?grammar.ru[level].map(([title,theory,examples],i)=>[englishText(title),russianGrammarEnglish[level][i],examples]):grammar[language][level];
+export const getGrammar=(language,level,source=getLocale())=>source==='en'?grammar[language][level].map(([title,theory,examples],i)=>[englishText(title),(language==='ru'?russianGrammarEnglish:englishGrammarEnglish)[level][i],examples]):grammar[language][level];
 export function grammarFor(language,level,unitIndex,source='ka'){const list=getGrammar(language,level,source);const [title,theory,examples]=list[unitIndex%list.length];return {title,theory,examples};}
 

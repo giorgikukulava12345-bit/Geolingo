@@ -38,5 +38,5 @@ export {normalize,LEVELS,isUnlocked} from './courseFactory.js';
 export const BRAND='Giolingo';
 export const courses=createCourses(topics);
 const englishCourses=createCourses(topics,'en');
-export const getCourses=(source=getLocale())=>source==='en'?{ru:englishCourses.ru}:courses;
+export const getCourses=(source=getLocale())=>source==='en'?englishCourses:courses;
 export const allLessons=(id,mode='adult',source=getLocale())=>{const course=source==='en'?englishCourses[id]:courses[id];return (mode==='kids'?course.kidsUnits:course.units).flatMap(u=>u.lessons);};
