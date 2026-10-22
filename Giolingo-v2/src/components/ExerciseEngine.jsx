@@ -1,3 +1,4 @@
+import {playEffect} from '../lib/effects';
 import RussianKeyboard from './RussianKeyboard';
 import { getLocale, tr, trf } from '../i18n';
 import { useEffect, useRef, useState } from 'react';
@@ -110,7 +111,7 @@ export default function ExerciseEngine({
       card: d.card + 1
     });
   }
-  function wrong() {
+  function wrong() { playEffect(false);
     loseHeart();
     recordMistake(lesson, q);
   }
@@ -120,6 +121,7 @@ export default function ExerciseEngine({
       feedback: valid,
       mistakes: d.mistakes + (valid ? 0 : 1)
     });
+    if(valid)playEffect(true);
     if (!valid) wrong();else resolveMistake(`${lesson.id}:${q.id}`);
   }
   function next() {
@@ -184,3 +186,4 @@ export default function ExerciseEngine({
  </main><footer className={`exercise-footer ${d.feedback === true ? 'correct' : d.feedback === false ? 'incorrect' : ''}`}><div role="status">{disabled ? <><strong>{d.feedback ? tr("\u10E8\u10D4\u10E1\u10D0\u10DC\u10D8\u10E8\u10DC\u10D0\u10D5\u10D8\u10D0!") : tr("\u10D2\u10D0\u10D0\u10D2\u10E0\u10EB\u10D4\u10DA\u10D4, \u10E8\u10D4\u10DC \u10E8\u10D4\u10EB\u10DA\u10D4\u10D1!")}</strong>{!d.feedback && <p>{tr("\u10E1\u10EC\u10DD\u10E0\u10D8 \u10DE\u10D0\u10E1\u10E3\u10EE\u10D8: ")}{q.answer}</p>}</> : <small>{tr("\u10D0\u10E0 \u10D8\u10E9\u10E5\u10D0\u10E0\u10DD \u2014 \u10E8\u10D4\u10DC \u10E1\u10EC\u10D0\u10D5\u10DA\u10DD\u10D1.")}</small>}</div>{disabled ? <button className="primary" onClick={next}>{tr("\u10D2\u10D0\u10D2\u10E0\u10EB\u10D4\u10DA\u10D4\u10D1\u10D0 ")}<ArrowRight size={18} /></button> : <button className="primary" disabled={q.type === 'match' ? d.matches.length !== q.pairs.length : q.type === 'build' ? d.tokens.length === 0 : !d.answer.trim()} onClick={check}>{tr("\u10E8\u10D4\u10DB\u10DD\u10EC\u10DB\u10D4\u10D1\u10D0 ")}<Check size={18} /></button>}</footer></>}
  </div></div>;
 }
+

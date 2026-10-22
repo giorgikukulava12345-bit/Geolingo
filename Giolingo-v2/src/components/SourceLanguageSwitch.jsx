@@ -6,7 +6,7 @@ export default function SourceLanguageSwitch() {
   } = useProgress();
   return <label className="source-language-switch"><span>{tr('საწყისი ენა')}</span><select aria-label={tr('საწყისი ენა')} value={getLocale()} onChange={event => {
       const next = event.target.value;
-      if (next === 'en') chooseLanguage('ru');
+      
       setLocale(next);
     }}><option value="ka">ქართული</option><option value="en">English</option></select></label>;
 }

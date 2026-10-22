@@ -6,15 +6,17 @@ import { normalize } from '../data/curriculum.js';
 export function AudioButton({
   text,
   language = 'en',
-  slow = false
+  slow = false,
+  onPlayed
 }) {
   const [status, setStatus] = useState('');
   const stop = useRef(null);
+  const [half,setHalf]=useState(slow);
   useEffect(() => observeVoices(() => {}), []);
   useEffect(() => () => stop.current?.(), [text, language]);
   return <span className="audio-control"><button type="button" className="audio-button" aria-label={`${slow ? tr("\u10DC\u10D4\u10DA\u10D0 \u10DB\u10DD\u10E1\u10DB\u10D4\u10DC\u10D0") : tr("\u10DB\u10DD\u10E1\u10DB\u10D4\u10DC\u10D0")}: ${text}`} onClick={() => {
-      stop.current = speakText(text, language, slow, setStatus);
-    }}><Volume2 size={19} />{slow && <small>{tr("\u10DC\u10D4\u10DA\u10D0")}</small>}</button>{status && <small role="status">{status}</small>}</span>;
+      stop.current = speakText(text, language, half, setStatus, onPlayed);
+    }}><Volume2 size={19} />{slow && <small>{tr("\u10DC\u10D4\u10DA\u10D0")}</small>}</button><button className="speed-toggle" type="button" aria-label="0.5x" aria-pressed={half} onClick={()=>setHalf(v=>!v)}>{half?'0.5x':'1x'}</button>{status && <small role="status">{status}</small>}</span>;
 }
 export function SpeakingPractice({
   text,
