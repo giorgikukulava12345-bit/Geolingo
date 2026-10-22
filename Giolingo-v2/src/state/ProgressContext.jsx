@@ -1,3 +1,4 @@
+import {recordActivity,claimQuest} from './activities.js';
 import { tr, trf } from "../i18n";
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { initialProgress, STORAGE_KEY, completeLesson, activeStreak, newRoot, sanitizeRoot } from './progress.js';
@@ -259,7 +260,8 @@ export function ProgressProvider({
       ...s,
       hearts: 5
     })),
-    finish: (id, xp) => update(s => completeLesson(s, id, xp)),
+    finish: (id, xp) => update(s => recordActivity(completeLesson(s,id,xp),'lesson',id)),
+    recordActivity:(type,id)=>update(s=>recordActivity(s,type,id)),claimQuest:id=>update(s=>claimQuest(s,id)),addCourse:language=>update(s=>({...s,joinedCourses:[...new Set([...(s.joinedCourses||[]),language])]})),
     saveDraft: (id, draft) => update(s => ({
       ...s,
       drafts: {
