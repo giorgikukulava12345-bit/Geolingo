@@ -1,3 +1,4 @@
+import {getLocale} from '../i18n.js';
 // Authored Georgian / English / Russian vocabulary. Stable IDs are persisted.
 const topics = [
  ['საფუძვლები','🌱',[
@@ -36,4 +37,6 @@ import {createCourses} from './courseFactory.js';
 export {normalize,LEVELS,isUnlocked} from './courseFactory.js';
 export const BRAND='Giolingo';
 export const courses=createCourses(topics);
-export const allLessons=(id,mode='adult')=>(mode==='kids'?courses[id].kidsUnits:courses[id].units).flatMap(u=>u.lessons);
+const englishCourses=createCourses(topics,'en');
+export const getCourses=(source=getLocale())=>source==='en'?{ru:englishCourses.ru}:courses;
+export const allLessons=(id,mode='adult',source=getLocale())=>{const course=source==='en'?englishCourses[id]:courses[id];return (mode==='kids'?course.kidsUnits:course.units).flatMap(u=>u.lessons);};
