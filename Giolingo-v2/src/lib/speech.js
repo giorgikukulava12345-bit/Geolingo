@@ -18,7 +18,7 @@ export function observeVoices(listener) {
   synth.addEventListener('voiceschanged', changed);
   return () => synth.removeEventListener('voiceschanged', changed);
 }
-export function speakText(text, language, slow, notify) {
+export function speakText(text, language, slow, notify, onPlayed) {
   const synth = window.speechSynthesis;
   if (!synth || !window.SpeechSynthesisUtterance) {
     notify(tr("\u10D0\u10DB \u10D1\u10E0\u10D0\u10E3\u10D6\u10D4\u10E0\u10E1 \u10DB\u10DD\u10E1\u10DB\u10D4\u10DC\u10D0 \u10D0\u10E0 \u10D0\u10E5\u10D5\u10E1. \u10D2\u10D0\u10DB\u10DD\u10D8\u10E7\u10D4\u10DC\u10D4 Chrome, Edge \u10D0\u10DC Safari."));
@@ -30,7 +30,7 @@ export function speakText(text, language, slow, notify) {
   const matching = voices.filter(v => v.lang.toLowerCase().split(/[-_]/)[0] === language);
   utterance.lang = language === 'ru' ? 'ru-RU' : 'en-US';
   utterance.voice = matching.find(v => v.lang === utterance.lang) || matching.find(v => v.localService) || matching[0] || null;
-  utterance.rate = slow ? .7 : .9;
+  utterance.rate = slow ? .5 : 1;
   const session = {
     utterance,
     notify,
@@ -47,7 +47,7 @@ export function speakText(text, language, slow, notify) {
     clearTimeout(session.timer);
     notify(tr("\u10DB\u10D8\u10DB\u10D3\u10D8\u10DC\u10D0\u10E0\u10D4\u10DD\u10D1\u10E1 \u10DB\u10DD\u10E1\u10DB\u10D4\u10DC\u10D0\u2026"));
   };
-  utterance.onend = () => finish('');
+  utterance.onend = () => {finish('');onPlayed?.();};
   utterance.onerror = event => {
     if (['canceled', 'interrupted'].includes(event.error)) {
       finish('');
