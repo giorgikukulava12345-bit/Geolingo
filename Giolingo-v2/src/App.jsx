@@ -3,11 +3,12 @@ import Stories from './components/Stories';
 import MatchMadness from './components/MatchMadness';
 import DailyQuests from './components/DailyQuests';
 import SpeakingStudio from './components/SpeakingStudio';
+import ConversationPractice from './components/ConversationPractice';
 import { getLocale, tr, trf } from "./i18n";
 import SourceLanguageSwitch from './components/SourceLanguageSwitch';
 import SpeechSettings from './components/SpeechSettings';
 import { useEffect, useState } from 'react';
-import { BookOpen, Target, BarChart3, Settings, ArrowRight, Check, Flame, Heart, Zap, Sparkles, GraduationCap, Library, NotebookPen, UserRound } from 'lucide-react';
+import { BookOpen, Target, BarChart3, Settings, ArrowRight, Check, Flame, Heart, Zap, Sparkles, GraduationCap, Library, NotebookPen, UserRound, MessagesSquare } from 'lucide-react';
 import LanguageFlag from './components/LanguageFlag';
 import Navbar from './components/Navbar';
 import KidsLogo from './components/KidsLogo';
@@ -24,7 +25,15 @@ function Mascot() {
   return <div className="mascot" aria-hidden="true"><div className="mascot-leaf" /><div className="mascot-body"><div className="mascot-face"><i /><i /><b>ᴗ</b></div></div><span className="mascot-spark">✦</span><span className="mascot-foot one" /><span className="mascot-foot two" /></div>;
 }
 const baseNav = () => [['learn', BookOpen, tr("\u10E1\u10EC\u10D0\u10D5\u10DA\u10D0")], ['practice', Target, tr("\u10D2\u10D0\u10DB\u10D4\u10DD\u10E0\u10D4\u10D1\u10D0")], ['grammar', GraduationCap, tr("\u10D2\u10E0\u10D0\u10DB\u10D0\u10E2\u10D8\u10D9\u10D0")], ['vocabulary', Library, tr("\u10DA\u10D4\u10E5\u10E1\u10D8\u10D9\u10DD\u10DC\u10D8")], ['review', NotebookPen, tr("\u10E8\u10D4\u10EA\u10D3\u10DD\u10DB\u10D4\u10D1\u10D8\u10E1 \u10E7\u10E3\u10DA\u10D0\u10D1\u10D0")], ['progress', BarChart3, tr("\u10E9\u10D4\u10DB\u10D8 \u10DE\u10E0\u10DD\u10D2\u10E0\u10D4\u10E1\u10D8")], ['settings', Settings, tr("\u10DE\u10D0\u10E0\u10D0\u10DB\u10D4\u10E2\u10E0\u10D4\u10D1\u10D8")]];
-const nav=()=>[...baseNav(),['stories',BookOpen,getLocale()==='en'?'Stories':'ისტორიები'],['match',Zap,'Match Madness'],['quests',Target,getLocale()==='en'?'Daily Quests':'დღიური მისიები'],['speaking',Sparkles,getLocale()==='en'?'Speaking Studio':'საუბრის სტუდია']];
+const conversationTitle = () => getLocale() === 'en' ? 'Conversation Practice' : 'სასაუბრო პრაქტიკა';
+const nav = () => {
+  const [learn, practice, ...rest] = baseNav();
+  return [learn, practice, ['conversation', MessagesSquare, conversationTitle()], ...rest,
+    ['stories', BookOpen, getLocale() === 'en' ? 'Stories' : 'ისტორიები'],
+    ['match', Zap, 'Match Madness'],
+    ['quests', Target, getLocale() === 'en' ? 'Daily Quests' : 'დღიური მისიები'],
+    ['speaking', Sparkles, getLocale() === 'en' ? 'Speaking Studio' : 'საუბრის სტუდია']];
+};
 export default function App() {
   const {
     state,
@@ -77,7 +86,8 @@ export default function App() {
     review: tr("\u10E8\u10D4\u10EA\u10D3\u10DD\u10DB\u10D0 \u10D0\u10EE\u10D0\u10DA \u10EA\u10DD\u10D3\u10DC\u10D0\u10D3 \u10D0\u10E5\u10EA\u10D8\u10D4"),
     progress: tr("\u10E8\u10D4\u10DC\u10D8 \u10DE\u10D0\u10E2\u10D0\u10E0\u10D0 \u10D2\u10D0\u10DB\u10D0\u10E0\u10EF\u10D5\u10D4\u10D1\u10D4\u10D1\u10D8"),
     settings: tr("\u10DB\u10DD\u10D8\u10E0\u10D2\u10D4 \u10E8\u10D4\u10DC\u10D8 \u10D2\u10D0\u10DB\u10DD\u10EA\u10D3\u10D8\u10DA\u10D4\u10D1\u10D0"),
-    placement: tr("\u10D8\u10DE\u10DD\u10D5\u10D4 \u10E8\u10D4\u10DC\u10D8 \u10D3\u10DD\u10DC\u10D4")
+    placement: tr("\u10D8\u10DE\u10DD\u10D5\u10D4 \u10E8\u10D4\u10DC\u10D8 \u10D3\u10DD\u10DC\u10D4"),
+    conversation: conversationTitle()
   };
   return <div className={`app-layout ${kids ? 'kids-theme' : ''}`}><aside className="sidebar" inert={!!lesson}><a href="#" className="brand" onClick={() => setPage('learn')} aria-label="Giolingo">giolingo<span>✦</span>{kids && <em>kids</em>}</a><div className="brand-caption">{tr("\u10DE\u10D0\u10E2\u10D0\u10E0\u10D0 \u10DC\u10D0\u10D1\u10D8\u10EF\u10D4\u10D1\u10D8. \u10D3\u10D8\u10D3\u10D8 \u10E1\u10D0\u10DB\u10E7\u10D0\u10E0\u10DD.")}</div><nav>{nav().map(([id, Icon, label]) => <button key={id} className={page === id ? 'nav-active' : ''} onClick={() => setPage(id)}><Icon size={22} />{label}{id === 'learn' && <span>✦</span>}</button>)}</nav><div className="sidebar-bottom"><button className="mode-switch" onClick={() => {
           setMode(kids ? 'adult' : 'kids');
@@ -89,6 +99,7 @@ export default function App() {
  {page==='match'&&<MatchMadness key={state.language}/>}
  {page==='quests'&&<DailyQuests/>}
  {page==='speaking'&&<SpeakingStudio key={state.language}/>}
+ {page === 'conversation' && <ConversationPractice key={state.language} initialLanguage={state.language} initialLevel={level} />}
  {page === 'grammar' && <GrammarLibrary units={units} language={course.id} />}
  {page === 'vocabulary' && <VocabularyBank />}
  {page === 'review' && <SmartReview />}

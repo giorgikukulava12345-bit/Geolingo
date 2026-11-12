@@ -1,0 +1,46 @@
+.conversation-practice {
+  --conversation-surface: #fcfdfb;
+  --conversation-text: #283e37;
+  --conversation-muted: #53685d;
+  --conversation-line: #dce8df;
+  --conversation-bubble: #edf5ef;
+  color: var(--conversation-text);
+}
+
+.dark .conversation-practice {
+  --conversation-surface: #202d27;
+  --conversation-text: #edf5ef;
+  --conversation-muted: #bacdbf;
+  --conversation-line: #40554a;
+  --conversation-bubble: #2c4036;
+}
+
+.conversation-card,
+.conversation-option {
+  border-color: var(--conversation-line);
+  background: var(--conversation-surface);
+  color: var(--conversation-text);
+}
+
+.conversation-bubble {
+  background: var(--conversation-bubble);
+  color: var(--conversation-text);
+}
+
+.conversation-muted {
+  color: var(--conversation-muted);
+}
+
+.conversation-choice > input:checked + span {
+  border-color: #19895d;
+  background: #eaf7ef;
+  color: #174a35;
+}
+
+.conversation-code {
+  color: inherit;
+}
+
+.conversation-practice fieldset {
+  min-width: 0;
+}
