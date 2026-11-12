@@ -2,13 +2,14 @@ export const languages = { en: "ინგლისური", ru: "რუსუ�
 export const levels = { A1: "დამწყები", A2: "საბაზისო" };
 export const historyLimit = 6;
 export const optionLimit = 180;
-export const messageLimit = 360;
+export const inputLimit = 600;
+export const messageLimit = 800;
 
 export function boundedText(value, limit) {
   return typeof value === "string" && value.length <= limit && value.trim() !== "";
 }
 
-export function parseTurn(value, hasAnswer) {
+export function parseTurn(value, kind) {
   if (!boundedText(value?.message, messageLimit) ||
       !Array.isArray(value.options) || value.options.length !== 3 ||
       !value.options.every((option) => boundedText(option, optionLimit))) {
@@ -19,7 +20,7 @@ export function parseTurn(value, hasAnswer) {
   if (new Set(options.map((option) => option.toLowerCase())).size !== 3) return null;
 
   const feedback = value.feedback;
-  if (hasAnswer && (
+  if ((kind === "choice" || (kind === "text" && feedback != null)) && (
     typeof feedback?.correct !== "boolean" ||
     !boundedText(feedback.text, messageLimit) ||
     !/[\u10d0-\u10ff]/u.test(feedback.text)
@@ -28,6 +29,6 @@ export function parseTurn(value, hasAnswer) {
   return {
     message: value.message.trim(),
     options,
-    feedback: hasAnswer ? { correct: feedback.correct, text: feedback.text.trim() } : null,
+    feedback: kind && feedback ? { correct: feedback.correct, text: feedback.text.trim() } : null,
   };
 }

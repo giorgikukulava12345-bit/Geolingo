@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { MessagesSquare } from "lucide-react";
-import { historyLimit, languages, levels, parseTurn } from "../lib/conversation/shared.js";
+import { MessagesSquare, Send } from "lucide-react";
+import { historyLimit, inputLimit, languages, levels, parseTurn } from "../lib/conversation/shared.js";
 import "./conversation.css";
 
 const focusRing = "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-emerald-700";
@@ -43,7 +43,7 @@ function PartnerMark() {
   );
 }
 
-function DialogueBubble({ message, language, headingRef }) {
+function DialogueBubble({ message, language, headingRef, live }) {
   return (
     <div className="flex items-start gap-3">
       <PartnerMark />
@@ -53,7 +53,8 @@ function DialogueBubble({ message, language, headingRef }) {
           ref={headingRef}
           tabIndex={headingRef ? -1 : undefined}
           lang={language}
-          className={`wrap-break-word text-base leading-relaxed font-semibold ${focusRing}`}
+          aria-live={live ? "polite" : undefined}
+          className={`wrap-break-word whitespace-pre-wrap text-base leading-relaxed font-semibold ${focusRing}`}
         >
           {message}
         </p>
@@ -63,21 +64,21 @@ function DialogueBubble({ message, language, headingRef }) {
 }
 
 function Exchange({ exchange, language, feedbackRef }) {
-  const { message, answer, feedback } = exchange;
+  const { message, answer, kind, feedback } = exchange;
   return (
     <div className="space-y-3">
-      <DialogueBubble message={message} language={language} />
-      <p lang={language} className="ml-auto w-fit max-w-[90%] wrap-break-word rounded-2xl rounded-tr-sm bg-[#167750] px-4 py-3 text-sm leading-relaxed font-medium text-white">
+      {message && <DialogueBubble message={message} language={language} />}
+      <p lang={kind === "text" && /[\u10d0-\u10ff]/u.test(answer) ? "ka" : language} dir="auto" className="ml-auto w-fit max-w-[90%] wrap-break-word whitespace-pre-wrap rounded-2xl rounded-tr-sm bg-[#167750] px-4 py-3 text-sm leading-relaxed font-medium text-white">
         {answer}
       </p>
-      <div
+      {feedback && <div
         ref={feedbackRef}
         tabIndex={feedbackRef ? -1 : undefined}
         className={`rounded-xl border px-4 py-3 text-sm leading-relaxed ${focusRing} ${feedback.correct ? "border-emerald-200 bg-emerald-50 text-emerald-950" : "border-amber-200 bg-amber-50 text-amber-950"}`}
       >
         <p className="mb-1 font-extrabold">{feedback.correct ? "კარგი პასუხია" : "უკეთესი პასუხი"}</p>
         <p>{feedback.text}</p>
-      </div>
+      </div>}
     </div>
   );
 }
@@ -87,26 +88,35 @@ export default function ConversationPractice({ initialLanguage, initialLevel }) 
   const [level, setLevel] = useState(initialLevel === "A2" ? "A2" : "A1");
   const [turn, setTurn] = useState(null);
   const [exchanges, setExchanges] = useState([]);
+  const [draft, setDraft] = useState("");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
   const inFlight = useRef(null);
   const currentMessage = useRef(null);
   const latestFeedback = useRef(null);
   const startButton = useRef(null);
+  const composer = useRef(null);
   const lastExchange = exchanges.at(-1);
 
   useEffect(() => () => inFlight.current?.abort(), []);
   useEffect(() => {
-    if (turn) (latestFeedback.current ?? currentMessage.current)?.focus();
-  }, [turn]);
+    if (!turn) return;
+    if (lastExchange?.kind === "text") {
+      composer.current?.focus({ preventScroll: true });
+    } else {
+      (latestFeedback.current ?? currentMessage.current)?.focus();
+    }
+  }, [turn, lastExchange]);
 
-  async function requestTurn(answer) {
+  async function requestTurn(answer, kind = "choice") {
     if (inFlight.current) return;
     const controller = new AbortController();
     inFlight.current = controller;
-    const previous = turn && answer ? { message: turn.message, answer } : null;
+    const previous = answer ? {
+      message: turn?.message ?? "", answer, ...(kind === "text" ? { kind } : {}),
+    } : null;
     const history = previous
-      ? [...exchanges.slice(1 - historyLimit), previous].map(({ message, answer }) => ({ message, answer }))
+      ? [...exchanges.slice(1 - historyLimit).map(({ feedback, ...entry }) => entry), previous]
       : [];
 
     setPending(true);
@@ -125,7 +135,7 @@ export default function ConversationPractice({ initialLanguage, initialLevel }) 
         setError(result?.error || "დიალოგის მიღება ვერ მოხერხდა. სცადე ხელახლა.");
         return;
       }
-      const nextTurn = parseTurn(result, Boolean(previous));
+      const nextTurn = parseTurn(result, previous ? kind : undefined);
       if (!nextTurn) {
         setError("დიალოგის პასუხი ვერ დამუშავდა. სცადე ხელახლა.");
         return;
@@ -133,6 +143,7 @@ export default function ConversationPractice({ initialLanguage, initialLevel }) 
       if (previous) {
         setExchanges((items) => [...items, { ...previous, feedback: nextTurn.feedback }]);
       }
+      if (kind === "text") setDraft("");
       setTurn(nextTurn);
     } catch {
       if (!controller.signal.aborted) {
@@ -147,8 +158,14 @@ export default function ConversationPractice({ initialLanguage, initialLevel }) 
   function reset() {
     setTurn(null);
     setExchanges([]);
+    setDraft("");
     setError("");
     requestAnimationFrame(() => startButton.current?.focus());
+  }
+
+  function sendMessage(event) {
+    event.preventDefault();
+    if (draft.trim()) requestTurn(draft.trim(), "text");
   }
 
   return (
@@ -203,7 +220,7 @@ export default function ConversationPractice({ initialLanguage, initialLevel }) 
                   </details>
                 )}
                 {lastExchange && <Exchange exchange={lastExchange} language={language} feedbackRef={latestFeedback} />}
-                <DialogueBubble message={turn.message} language={language} headingRef={currentMessage} />
+                <DialogueBubble message={turn.message} language={language} headingRef={currentMessage} live={lastExchange?.kind === "text"} />
                 <fieldset disabled={pending} className="space-y-2.5">
                   <legend className="mb-3 text-sm font-bold">აირჩიე პასუხი</legend>
                   {turn.options.map((option, index) => (
@@ -226,7 +243,7 @@ export default function ConversationPractice({ initialLanguage, initialLevel }) 
                   <PartnerMark />
                   <p className="mt-4 font-bold">დაიწყე საუბარი</p>
                   <p className="conversation-muted mt-2 text-sm leading-relaxed">
-                    აირჩიე ენა და დონე. თითოეულ შეკითხვაზე სამი პასუხიდან ერთს აირჩევ.
+                    დაუსვი შეკითხვა, შესთავაზე თემა ან დაიწყე მზა დიალოგით.
                   </p>
                 </div>
               </div>
@@ -234,6 +251,36 @@ export default function ConversationPractice({ initialLanguage, initialLevel }) 
             {pending && <p role="status" className="conversation-muted text-sm font-medium">პასუხი მზადდება…</p>}
             {error && <p role="alert" className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-900">{error}</p>}
           </div>
+          <form onSubmit={sendMessage} className="space-y-2 border-t border-[var(--conversation-line)] px-5 py-4 sm:px-6">
+            <label htmlFor="conversation-input" className="block text-sm font-bold">შენი შეტყობინება</label>
+            <div className="flex items-end gap-2">
+              <textarea
+                id="conversation-input"
+                ref={composer}
+                value={draft}
+                readOnly={pending}
+                maxLength={inputLimit}
+                rows={2}
+                dir="auto"
+                onChange={(event) => setDraft(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing && event.nativeEvent.keyCode !== 229) {
+                    sendMessage(event);
+                  }
+                }}
+                placeholder="დაწერე პასუხი ან დასვი შეკითხვა…"
+                className={`conversation-bubble min-h-12 min-w-0 flex-1 resize-y rounded-xl border border-[var(--conversation-line)] px-3 py-2.5 text-sm ${focusRing}`}
+              />
+              <button
+                type="submit"
+                disabled={pending || !draft.trim()}
+                aria-label="გაგზავნა"
+                className={`grid size-12 shrink-0 place-items-center rounded-xl bg-[#167750] text-white hover:bg-emerald-900 disabled:opacity-50 ${focusRing}`}
+              >
+                <Send size={19} aria-hidden="true" />
+              </button>
+            </div>
+          </form>
         </section>
       </div>
     </section>
