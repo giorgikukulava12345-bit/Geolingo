@@ -1,0 +1,95 @@
+[
+  {
+    "id": "cafe",
+    "level": "A1",
+    "title": "კაფეში",
+    "english": "At a café",
+    "speakers": ["ბარისტა", "სტუმარი"],
+    "lines": [
+      ["Здравствуйте! Что будете заказывать?", "Hello! What would you like to order?"],
+      ["Мне, пожалуйста, капучино и круассан.", "A cappuccino and a croissant, please."],
+      ["Вам здесь или с собой?", "For here or to go?"],
+      ["С собой, пожалуйста. Сколько с меня?", "To go, please. How much is that?"],
+      ["Триста пятьдесят рублей. Картой или наличными?", "Three hundred and fifty rubles. Card or cash?"],
+      ["Картой, пожалуйста. Спасибо!", "By card, please. Thank you!"]
+    ]
+  },
+  {
+    "id": "directions",
+    "level": "A1",
+    "title": "გზის კითხვა",
+    "english": "Asking for directions",
+    "speakers": ["გამვლელი", "მოგზაური"],
+    "lines": [
+      ["Здравствуйте! Вам помочь?", "Hello! Can I help you?"],
+      ["Да, спасибо. Где ближайшая станция метро?", "Yes, thanks. Where is the nearest metro station?"],
+      ["Идите прямо до светофора, потом поверните налево.", "Go straight to the traffic light, then turn left."],
+      ["Это далеко?", "Is it far?"],
+      ["Нет, минут пять пешком. Вход будет справа.", "No, about five minutes on foot. The entrance is on the right."],
+      ["Понятно. Большое спасибо!", "Got it. Thank you very much!"]
+    ]
+  },
+  {
+    "id": "shopping",
+    "level": "A1",
+    "title": "ტანსაცმლის მაღაზიაში",
+    "english": "At a clothing store",
+    "speakers": ["გამყიდველი", "მყიდველი"],
+    "lines": [
+      ["Здравствуйте! Что вы ищете?", "Hello! What are you looking for?"],
+      ["Я ищу тёплую куртку. Есть такая побольше?", "I’m looking for a warm jacket. Do you have this one in a larger size?"],
+      ["Да, вот такая же куртка на размер больше.", "Yes, here’s the same jacket one size up."],
+      ["Можно примерить?", "Can I try it on?"],
+      ["Конечно. Примерочная справа, за кассой.", "Of course. The fitting room is on the right, past the checkout."],
+      ["Спасибо. Если подойдёт, я её возьму.", "Thanks. If it fits, I’ll take it."]
+    ]
+  },
+  {
+    "id": "station",
+    "level": "A2",
+    "title": "სადგურზე",
+    "english": "At the train station",
+    "speakers": ["მოლარე", "მგზავრი"],
+    "lines": [
+      ["Добрый день! Куда едете?", "Good afternoon! Where are you heading?"],
+      ["Мне один билет до Тулы на завтра утром, пожалуйста.", "One ticket to Tula for tomorrow morning, please."],
+      ["Есть поезд в восемь десять и в десять двадцать.", "There’s a train at 8:10 and another at 10:20."],
+      ["Давайте на восемь десять. Есть место у окна?", "I’ll take the 8:10. Is there a window seat?"],
+      ["Да, есть. Поезд отправляется с третьей платформы.", "Yes, there is. The train leaves from platform three."],
+      ["Спасибо. За сколько минут лучше прийти?", "Thanks. How early should I get here?"],
+      ["Лучше прийти минут за двадцать до отправления.", "It’s best to arrive about twenty minutes before departure."]
+    ]
+  },
+  {
+    "id": "hotel",
+    "level": "A2",
+    "title": "სასტუმროში",
+    "english": "Checking in at a hotel",
+    "speakers": ["ადმინისტრატორი", "სტუმარი"],
+    "lines": [
+      ["Добрый вечер! У вас есть бронь?", "Good evening! Do you have a reservation?"],
+      ["Да, на фамилию Иванова. Номер на две ночи.", "Yes, under Ivanova. A room for two nights."],
+      ["Нашёл вашу бронь. Можно ваш паспорт, пожалуйста?", "I found your reservation. May I see your passport, please?"],
+      ["Вот, пожалуйста. Завтрак входит в стоимость?", "Here you go. Is breakfast included?"],
+      ["Да. Завтрак с семи до десяти на первом этаже.", "Yes. Breakfast is from seven to ten on the ground floor."],
+      ["Спасибо! А во сколько нужно освободить номер?", "Thank you! And what time do I need to check out?"],
+      ["До двенадцати. Вот ваша ключ-карта.", "By noon. Here’s your key card."]
+    ]
+  },
+  {
+    "id": "pharmacy",
+    "level": "A2",
+    "title": "აფთიაქში",
+    "english": "At the pharmacy",
+    "speakers": ["ფარმაცევტი", "მყიდველი"],
+    "lines": [
+      ["Здравствуйте! Чем могу помочь?", "Hello! How can I help?"],
+      ["Мне нужен электронный термометр. У вас есть?", "I need a digital thermometer. Do you have one?"],
+      ["Да, есть. Вот этот самый простой.", "Yes, we do. This one is the simplest."],
+      ["Батарейка уже в комплекте?", "Is a battery included?"],
+      ["Да, батарейка уже внутри. Инструкция в коробке.", "Yes, the battery is already inside. The instructions are in the box."],
+      ["Хорошо, я его возьму. Можно оплатить картой?", "Okay, I’ll take it. Can I pay by card?"],
+      ["Конечно. Приложите карту к терминалу.", "Of course. Tap your card on the reader."]
+    ]
+  }
+]

@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MessagesSquare, Send } from "lucide-react";
+import { getLocale } from "../i18n";
 import { historyLimit, inputLimit, languages, levels, parseTurn } from "../lib/conversation/shared.js";
+import RussianDialogues from "./RussianDialogues";
 import "./conversation.css";
 
 const focusRing = "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-emerald-700";
@@ -83,7 +85,7 @@ function Exchange({ exchange, language, feedbackRef }) {
   );
 }
 
-export default function ConversationPractice({ initialLanguage, initialLevel }) {
+function AiConversation({ initialLanguage, initialLevel }) {
   const [language, setLanguage] = useState(initialLanguage === "ru" ? "ru" : "en");
   const [level, setLevel] = useState(initialLevel === "A2" ? "A2" : "A1");
   const [turn, setTurn] = useState(null);
@@ -284,5 +286,20 @@ export default function ConversationPractice({ initialLanguage, initialLevel }) 
         </section>
       </div>
     </section>
+  );
+}
+
+export default function ConversationPractice(props) {
+  const [listening, setListening] = useState(false);
+  const english = getLocale() === "en";
+  return (
+    <div>
+      <div className="module-tabs mb-4" aria-label={english ? "Conversation mode" : "სასაუბრო პრაქტიკის რეჟიმი"}>
+        <button type="button" className={!listening ? "selected" : ""} aria-pressed={!listening} onClick={() => setListening(false)}>{english ? "AI chat" : "AI ჩატი"}</button>
+        <button type="button" className={listening ? "selected" : ""} aria-pressed={listening} onClick={() => setListening(true)}>{english ? "Real Russian Conversations" : "რეალური რუსული დიალოგები"}</button>
+      </div>
+      <div hidden={listening}><AiConversation {...props} /></div>
+      {listening && <RussianDialogues />}
+    </div>
   );
 }
