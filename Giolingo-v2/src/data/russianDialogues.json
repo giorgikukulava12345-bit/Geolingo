@@ -4,7 +4,10 @@
     "level": "A1",
     "title": "კაფეში",
     "english": "At a café",
-    "speakers": ["ბარისტა", "სტუმარი"],
+    "speakers": [
+      "ბარისტა",
+      "სტუმარი"
+    ],
     "lines": [
       ["Здравствуйте! Что будете заказывать?", "Hello! What would you like to order?"],
       ["Мне, пожалуйста, капучино и круассан.", "A cappuccino and a croissant, please."],
@@ -12,14 +15,18 @@
       ["С собой, пожалуйста. Сколько с меня?", "To go, please. How much is that?"],
       ["Триста пятьдесят рублей. Картой или наличными?", "Three hundred and fifty rubles. Card or cash?"],
       ["Картой, пожалуйста. Спасибо!", "By card, please. Thank you!"]
-    ]
+    ],
+    "category": "food"
   },
   {
     "id": "directions",
     "level": "A1",
     "title": "გზის კითხვა",
     "english": "Asking for directions",
-    "speakers": ["გამვლელი", "მოგზაური"],
+    "speakers": [
+      "გამვლელი",
+      "მოგზაური"
+    ],
     "lines": [
       ["Здравствуйте! Вам помочь?", "Hello! Can I help you?"],
       ["Да, спасибо. Где ближайшая станция метро?", "Yes, thanks. Where is the nearest metro station?"],
@@ -27,14 +34,18 @@
       ["Это далеко?", "Is it far?"],
       ["Нет, минут пять пешком. Вход будет справа.", "No, about five minutes on foot. The entrance is on the right."],
       ["Понятно. Большое спасибо!", "Got it. Thank you very much!"]
-    ]
+    ],
+    "category": "travel"
   },
   {
     "id": "shopping",
     "level": "A1",
     "title": "ტანსაცმლის მაღაზიაში",
     "english": "At a clothing store",
-    "speakers": ["გამყიდველი", "მყიდველი"],
+    "speakers": [
+      "გამყიდველი",
+      "მყიდველი"
+    ],
     "lines": [
       ["Здравствуйте! Что вы ищете?", "Hello! What are you looking for?"],
       ["Я ищу тёплую куртку. Есть такая побольше?", "I’m looking for a warm jacket. Do you have this one in a larger size?"],
@@ -42,14 +53,18 @@
       ["Можно примерить?", "Can I try it on?"],
       ["Конечно. Примерочная справа, за кассой.", "Of course. The fitting room is on the right, past the checkout."],
       ["Спасибо. Если подойдёт, я её возьму.", "Thanks. If it fits, I’ll take it."]
-    ]
+    ],
+    "category": "services"
   },
   {
     "id": "station",
     "level": "A2",
     "title": "სადგურზე",
     "english": "At the train station",
-    "speakers": ["მოლარე", "მგზავრი"],
+    "speakers": [
+      "მოლარე",
+      "მგზავრი"
+    ],
     "lines": [
       ["Добрый день! Куда едете?", "Good afternoon! Where are you heading?"],
       ["Мне один билет до Тулы на завтра утром, пожалуйста.", "One ticket to Tula for tomorrow morning, please."],
@@ -58,14 +73,18 @@
       ["Да, есть. Поезд отправляется с третьей платформы.", "Yes, there is. The train leaves from platform three."],
       ["Спасибо. За сколько минут лучше прийти?", "Thanks. How early should I get here?"],
       ["Лучше прийти минут за двадцать до отправления.", "It’s best to arrive about twenty minutes before departure."]
-    ]
+    ],
+    "category": "travel"
   },
   {
     "id": "hotel",
     "level": "A2",
     "title": "სასტუმროში",
     "english": "Checking in at a hotel",
-    "speakers": ["ადმინისტრატორი", "სტუმარი"],
+    "speakers": [
+      "ადმინისტრატორი",
+      "სტუმარი"
+    ],
     "lines": [
       ["Добрый вечер! У вас есть бронь?", "Good evening! Do you have a reservation?"],
       ["Да, на фамилию Иванова. Номер на две ночи.", "Yes, under Ivanova. A room for two nights."],
@@ -74,14 +93,18 @@
       ["Да. Завтрак с семи до десяти на первом этаже.", "Yes. Breakfast is from seven to ten on the ground floor."],
       ["Спасибо! А во сколько нужно освободить номер?", "Thank you! And what time do I need to check out?"],
       ["До двенадцати. Вот ваша ключ-карта.", "By noon. Here’s your key card."]
-    ]
+    ],
+    "category": "travel"
   },
   {
     "id": "pharmacy",
     "level": "A2",
     "title": "აფთიაქში",
     "english": "At the pharmacy",
-    "speakers": ["ფარმაცევტი", "მყიდველი"],
+    "speakers": [
+      "ფარმაცევტი",
+      "მყიდველი"
+    ],
     "lines": [
       ["Здравствуйте! Чем могу помочь?", "Hello! How can I help?"],
       ["Мне нужен электронный термометр. У вас есть?", "I need a digital thermometer. Do you have one?"],
@@ -90,6 +113,551 @@
       ["Да, батарейка уже внутри. Инструкция в коробке.", "Yes, the battery is already inside. The instructions are in the box."],
       ["Хорошо, я его возьму. Можно оплатить картой?", "Okay, I’ll take it. Can I pay by card?"],
       ["Конечно. Приложите карту к терминалу.", "Of course. Tap your card on the reader."]
+    ],
+    "category": "health"
+  },
+  {
+    "id": "introductions",
+    "category": "people",
+    "level": "A1",
+    "title": "გაცნობა",
+    "english": "Meeting someone",
+    "speakers": [
+      "ანა",
+      "მაქსიმი"
+    ],
+    "lines": [
+      ["Привет! Мы, кажется, ещё не знакомы. Я Анна.", "Hi! I don’t think we’ve met yet. I’m Anna."],
+      ["Очень приятно. Я Максим.", "Nice to meet you. I’m Maxim."],
+      ["Ты здесь впервые?", "Is this your first time here?"],
+      ["Да, я только вчера приехал. А ты давно здесь живёшь?", "Yes, I just arrived yesterday. Have you lived here long?"],
+      ["Уже два года. Если нужна помощь, обращайся.", "Two years now. Let me know if you need help."]
+    ]
+  },
+  {
+    "id": "weekend",
+    "category": "people",
+    "level": "A1",
+    "title": "შაბათ-კვირის გეგმები",
+    "english": "Weekend plans",
+    "speakers": [
+      "მეგობარი",
+      "მეგობარი"
+    ],
+    "lines": [
+      ["Что делаешь в субботу?", "What are you doing on Saturday?"],
+      ["Пока ничего. А что?", "Nothing yet. Why?"],
+      ["Хочешь прогуляться в парке?", "Do you want to go for a walk in the park?"],
+      ["Давай. Во сколько встречаемся?", "Sure. What time shall we meet?"],
+      ["В три у главного входа.", "At three by the main entrance."]
+    ]
+  },
+  {
+    "id": "running-late",
+    "category": "people",
+    "level": "A1",
+    "title": "როცა აგვიანებ",
+    "english": "Running late",
+    "speakers": [
+      "მეგობარი",
+      "მეგობარი"
+    ],
+    "lines": [
+      ["Привет! Ты уже на месте?", "Hi! Are you there already?"],
+      ["Нет, извини, я немного опаздываю.", "No, sorry, I’m running a little late."],
+      ["Ничего страшного. Через сколько будешь?", "No worries. How soon will you be here?"],
+      ["Минут через десять. Я уже в автобусе.", "In about ten minutes. I’m already on the bus."],
+      ["Хорошо, я подожду у входа.", "Okay, I’ll wait by the entrance."]
+    ]
+  },
+  {
+    "id": "weather",
+    "category": "people",
+    "level": "A1",
+    "title": "ამინდზე საუბარი",
+    "english": "Talking about the weather",
+    "speakers": [
+      "მეზობელი",
+      "მეზობელი"
+    ],
+    "lines": [
+      ["Сегодня холодно, правда?", "It’s cold today, isn’t it?"],
+      ["Да, и ветер сильный. Хорошо, что я взял куртку.", "Yes, and it’s windy. I’m glad I brought a jacket."],
+      ["Говорят, вечером будет дождь.", "They say it’ll rain this evening."],
+      ["Тогда возьму ещё и зонт.", "Then I’ll take an umbrella too."],
+      ["Да, лучше взять. До встречи!", "Yes, better take one. See you!"]
+    ]
+  },
+  {
+    "id": "invitation",
+    "category": "people",
+    "level": "A2",
+    "title": "მოწვევა და სხვა დღის შეთავაზება",
+    "english": "Inviting and rescheduling",
+    "speakers": [
+      "მეგობარი",
+      "მეგობარი"
+    ],
+    "lines": [
+      ["Зайдёшь к нам сегодня вечером?", "Will you come by this evening?"],
+      ["Спасибо за приглашение, но сегодня не получится.", "Thanks for inviting me, but I can’t make it today."],
+      ["А завтра тебе удобно?", "Would tomorrow work for you?"],
+      ["Да, завтра после семи могу.", "Yes, I can do tomorrow after seven."],
+      ["Отлично, тогда жду тебя к восьми.", "Great, then I’ll see you around eight."]
+    ]
+  },
+  {
+    "id": "misunderstanding",
+    "category": "people",
+    "level": "A1",
+    "title": "როცა ვერ გაიგე",
+    "english": "Asking someone to repeat",
+    "speakers": [
+      "მოსაუბრე",
+      "მსმენელი"
+    ],
+    "lines": [
+      ["Давайте встретимся у библиотеки в половине шестого.", "Let’s meet by the library at half past five."],
+      ["Извините, не расслышал. Можете повторить помедленнее?", "Sorry, I didn’t catch that. Can you say it more slowly?"],
+      ["Конечно. В пять тридцать, у библиотеки.", "Of course. At five thirty, by the library."],
+      ["Пять тридцать, правильно?", "Five thirty, right?"],
+      ["Да, всё верно.", "Yes, that’s right."]
+    ]
+  },
+  {
+    "id": "grocery",
+    "category": "food",
+    "level": "A1",
+    "title": "სურსათის მაღაზიაში",
+    "english": "Grocery shopping",
+    "speakers": [
+      "გამყიდველი",
+      "მყიდველი"
+    ],
+    "lines": [
+      ["Здравствуйте! Вам помочь?", "Hello! Can I help you?"],
+      ["Да, где у вас молоко и яйца?", "Yes, where are the milk and eggs?"],
+      ["Молоко в холодильнике слева, яйца рядом.", "The milk is in the fridge on the left, and the eggs are next to it."],
+      ["Спасибо. А пакеты есть на кассе?", "Thanks. Are there bags at the checkout?"],
+      ["Да, попросите пакет у кассира.", "Yes, ask the cashier for a bag."]
+    ]
+  },
+  {
+    "id": "market",
+    "category": "food",
+    "level": "A1",
+    "title": "ბაზარში ხილის ყიდვა",
+    "english": "Buying fruit at the market",
+    "speakers": [
+      "გამყიდველი",
+      "მყიდველი"
+    ],
+    "lines": [
+      ["Добрый день! Что вам взвесить?", "Good afternoon! What can I weigh for you?"],
+      ["Сколько стоит килограмм яблок?", "How much is a kilo of apples?"],
+      ["Сто двадцать рублей за килограмм.", "One hundred and twenty rubles per kilo."],
+      ["Дайте полкило, пожалуйста. И две груши.", "Half a kilo, please. And two pears."],
+      ["Вот, пожалуйста. Что-нибудь ещё?", "Here you go. Anything else?"],
+      ["Нет, спасибо. Это всё.", "No, thank you. That’s all."]
+    ]
+  },
+  {
+    "id": "restaurant",
+    "category": "food",
+    "level": "A2",
+    "title": "რესტორანში შეკვეთა",
+    "english": "Ordering at a restaurant",
+    "speakers": [
+      "ოფიციანტი",
+      "სტუმარი"
+    ],
+    "lines": [
+      ["Добрый вечер! Вы уже выбрали?", "Good evening! Are you ready to order?"],
+      ["Пока нет. Что вы посоветуете?", "Not yet. What do you recommend?"],
+      ["Сегодня хороший грибной суп и рыба с овощами.", "The mushroom soup is good today, and so is the fish with vegetables."],
+      ["Тогда мне суп. И воду без газа, пожалуйста.", "I’ll have the soup, then. And still water, please."],
+      ["Хорошо. Вам хлеб принести?", "All right. Would you like some bread?"],
+      ["Да, пожалуйста.", "Yes, please."]
+    ]
+  },
+  {
+    "id": "bill",
+    "category": "food",
+    "level": "A2",
+    "title": "ანგარიშის გაყოფა",
+    "english": "Splitting the bill",
+    "speakers": [
+      "ოფიციანტი",
+      "სტუმარი"
+    ],
+    "lines": [
+      ["Вам ещё что-нибудь принести?", "Can I get you anything else?"],
+      ["Нет, спасибо. Можно счёт?", "No, thank you. Could we have the bill?"],
+      ["Конечно. Вам вместе или раздельно?", "Of course. Together or separately?"],
+      ["Раздельно, пожалуйста. Я за суп и чай.", "Separately, please. I’m paying for the soup and tea."],
+      ["Хорошо. Можете приложить карту.", "All right. You can tap your card."]
+    ]
+  },
+  {
+    "id": "food-ingredients",
+    "category": "food",
+    "level": "A2",
+    "title": "კერძის შემადგენლობის კითხვა",
+    "english": "Asking what’s in a dish",
+    "speakers": [
+      "ოფიციანტი",
+      "სტუმარი"
+    ],
+    "lines": [
+      ["Вы готовы заказать?", "Are you ready to order?"],
+      ["Скажите, пожалуйста, в этом салате есть орехи?", "Could you tell me if this salad contains nuts?"],
+      ["В самом салате нет, но орехи есть в соусе.", "Not in the salad itself, but there are nuts in the dressing."],
+      ["Тогда можно салат без соуса?", "Could I have the salad without the dressing, then?"],
+      ["Конечно. Принести оливковое масло отдельно?", "Of course. Shall I bring some olive oil on the side?"],
+      ["Да, спасибо.", "Yes, thank you."]
+    ]
+  },
+  {
+    "id": "bus",
+    "category": "travel",
+    "level": "A1",
+    "title": "ავტობუსის გაჩერებაზე",
+    "english": "At the bus stop",
+    "speakers": [
+      "მგზავრი",
+      "გამვლელი"
+    ],
+    "lines": [
+      ["Извините, этот автобус идёт до центра?", "Excuse me, does this bus go to the city centre?"],
+      ["Нет, вам нужен номер двенадцать.", "No, you need bus number twelve."],
+      ["А где он останавливается?", "Where does it stop?"],
+      ["На другой стороне улицы, напротив аптеки.", "On the other side of the street, opposite the pharmacy."],
+      ["Спасибо, теперь понятно.", "Thanks, I know where to go now."]
+    ]
+  },
+  {
+    "id": "taxi",
+    "category": "travel",
+    "level": "A1",
+    "title": "ტაქსიში",
+    "english": "Taking a taxi",
+    "speakers": [
+      "მძღოლი",
+      "მგზავრი"
+    ],
+    "lines": [
+      ["Здравствуйте! Куда едем?", "Hello! Where are we going?"],
+      ["На вокзал, пожалуйста. К главному входу.", "To the station, please. To the main entrance."],
+      ["Хорошо. Вам помочь с чемоданом?", "Sure. Do you need help with your suitcase?"],
+      ["Да, спасибо. Сколько примерно ехать?", "Yes, thanks. About how long will it take?"],
+      ["Минут пятнадцать, если без пробок.", "About fifteen minutes if there’s no traffic."]
+    ]
+  },
+  {
+    "id": "metro",
+    "category": "travel",
+    "level": "A2",
+    "title": "მეტროში გადაჯდომა",
+    "english": "Changing metro lines",
+    "speakers": [
+      "მგზავრი",
+      "გამვლელი"
+    ],
+    "lines": [
+      ["Подскажите, как доехать до станции «Парк культуры»?", "Could you tell me how to get to Park Kultury station?"],
+      ["Езжайте до следующей станции, там пересядьте на красную линию.", "Go to the next station and change to the red line there."],
+      ["Потом сколько остановок?", "How many stops after that?"],
+      ["Две остановки. Следите за объявлениями.", "Two stops. Listen out for the announcements."],
+      ["Понятно. Спасибо за помощь!", "Got it. Thanks for your help!"]
+    ]
+  },
+  {
+    "id": "airport",
+    "category": "travel",
+    "level": "A2",
+    "title": "აეროპორტში რეგისტრაცია",
+    "english": "Checking in at the airport",
+    "speakers": [
+      "თანამშრომელი",
+      "მგზავრი"
+    ],
+    "lines": [
+      ["Добрый день! Ваш паспорт, пожалуйста.", "Good afternoon! Your passport, please."],
+      ["Вот. Я лечу в Стамбул.", "Here you are. I’m flying to Istanbul."],
+      ["Есть багаж, который нужно сдать?", "Do you have any bags to check in?"],
+      ["Да, один чемодан. А рюкзак возьму с собой.", "Yes, one suitcase. I’m taking the backpack with me."],
+      ["Хорошо. Вот ваш посадочный талон.", "All right. Here’s your boarding pass."],
+      ["Спасибо. Где выход на посадку?", "Thanks. Where is the boarding gate?"]
+    ]
+  },
+  {
+    "id": "delivery",
+    "category": "home",
+    "level": "A1",
+    "title": "კურიერთან საუბარი",
+    "english": "Receiving a delivery",
+    "speakers": [
+      "კურიერი",
+      "მიმღები"
+    ],
+    "lines": [
+      ["Здравствуйте, это курьер. Я у подъезда.", "Hello, this is the courier. I’m by the entrance."],
+      ["Здравствуйте! Какой у вас номер подъезда?", "Hello! Which entrance are you at?"],
+      ["Второй. Домофон не отвечает.", "Number two. No one is answering the intercom."],
+      ["Нажмите кнопку с номером двадцать четыре.", "Press the button for number twenty-four."],
+      ["Хорошо, звоню. Спасибо.", "All right, I’m ringing now. Thanks."]
+    ]
+  },
+  {
+    "id": "neighbour",
+    "category": "home",
+    "level": "A2",
+    "title": "მეზობელს დახმარებას სთხოვ",
+    "english": "Asking a neighbour for help",
+    "speakers": [
+      "მეზობელი",
+      "მეზობელი"
+    ],
+    "lines": [
+      ["Извините, у вас случайно нет отвёртки?", "Excuse me, do you happen to have a screwdriver?"],
+      ["Есть. Вам плоская или крестовая?", "I do. Do you need a flathead or a Phillips?"],
+      ["Крестовая, пожалуйста. Верну через час.", "A Phillips, please. I’ll bring it back in an hour."],
+      ["Конечно, возьмите. Можете вернуть вечером.", "Of course, take it. You can bring it back this evening."],
+      ["Спасибо большое, вы меня выручили.", "Thank you very much. You really helped me out."]
+    ]
+  },
+  {
+    "id": "repair",
+    "category": "home",
+    "level": "A2",
+    "title": "ხელოსნის გამოძახება",
+    "english": "Calling for a repair",
+    "speakers": [
+      "თანამშრომელი",
+      "მობინადრე"
+    ],
+    "lines": [
+      ["Здравствуйте! Что у вас случилось?", "Hello! What seems to be the problem?"],
+      ["На кухне течёт кран. Можно вызвать мастера?", "The kitchen tap is leaking. Can I get someone to come fix it?"],
+      ["Да. Вам удобно завтра с десяти до двенадцати?", "Yes. Would tomorrow between ten and noon work for you?"],
+      ["Да, я буду дома. Сколько стоит выезд?", "Yes, I’ll be home. How much is the call-out charge?"],
+      ["Мастер назовёт цену до начала работы.", "The technician will tell you the price before starting."]
+    ]
+  },
+  {
+    "id": "renting",
+    "category": "home",
+    "level": "A2",
+    "title": "ბინის ნახვის შეთანხმება",
+    "english": "Arranging an apartment viewing",
+    "speakers": [
+      "მეპატრონე",
+      "დამქირავებელი"
+    ],
+    "lines": [
+      ["Здравствуйте! Вы звоните по объявлению о квартире?", "Hello! Are you calling about the apartment listing?"],
+      ["Да. Она ещё сдаётся?", "Yes. Is it still available?"],
+      ["Да, можно посмотреть сегодня после шести.", "Yes, you can see it today after six."],
+      ["А завтра утром можно? Сегодня я на работе.", "Could I come tomorrow morning? I’m at work today."],
+      ["Можно. Давайте в одиннадцать.", "Yes. Let’s say eleven."]
+    ]
+  },
+  {
+    "id": "return",
+    "category": "services",
+    "level": "A2",
+    "title": "ნივთის დაბრუნება",
+    "english": "Returning an item",
+    "speakers": [
+      "გამყიდველი",
+      "მყიდველი"
+    ],
+    "lines": [
+      ["Здравствуйте! Чем могу помочь?", "Hello! How can I help you?"],
+      ["Я хочу вернуть эту футболку. Она мне мала.", "I’d like to return this T-shirt. It’s too small for me."],
+      ["У вас есть чек?", "Do you have the receipt?"],
+      ["Да, вот. Можно поменять её на размер больше?", "Yes, here it is. Can I exchange it for a size up?"],
+      ["Конечно, сейчас проверю, есть ли ваш размер.", "Of course, I’ll check whether we have your size."]
+    ]
+  },
+  {
+    "id": "card-declined",
+    "category": "services",
+    "level": "A1",
+    "title": "როცა ბარათი არ მუშაობს",
+    "english": "When your card doesn’t work",
+    "speakers": [
+      "მოლარე",
+      "მყიდველი"
+    ],
+    "lines": [
+      ["Извините, оплата не прошла.", "Sorry, the payment didn’t go through."],
+      ["Можно попробовать ещё раз?", "Can I try again?"],
+      ["Да, вставьте карту в терминал.", "Yes, insert your card into the reader."],
+      ["Снова не получилось? Тогда я заплачу наличными.", "It didn’t work again? Then I’ll pay in cash."],
+      ["Хорошо, без проблем.", "All right, no problem."]
+    ]
+  },
+  {
+    "id": "post-office",
+    "category": "services",
+    "level": "A2",
+    "title": "ფოსტაში ამანათის გაგზავნა",
+    "english": "Sending a parcel",
+    "speakers": [
+      "ფოსტის თანამშრომელი",
+      "მომხმარებელი"
+    ],
+    "lines": [
+      ["Здравствуйте! Что хотите отправить?", "Hello! What would you like to send?"],
+      ["Вот эту посылку. Сколько стоит доставка?", "This parcel. How much does delivery cost?"],
+      ["Сначала нужно взвесить. Куда отправляете?", "I need to weigh it first. Where are you sending it?"],
+      ["В Казань. Сколько дней она будет идти?", "To Kazan. How many days will it take?"],
+      ["Обычно три-пять дней. Вот номер для отслеживания.", "Usually three to five days. Here’s the tracking number."]
+    ]
+  },
+  {
+    "id": "lost-item",
+    "category": "services",
+    "level": "A2",
+    "title": "დაკარგული ნივთის ძებნა",
+    "english": "Looking for a lost item",
+    "speakers": [
+      "თანამშრომელი",
+      "მომხმარებელი"
+    ],
+    "lines": [
+      ["Здравствуйте! Чем вам помочь?", "Hello! How can I help?"],
+      ["Кажется, я оставил здесь телефон. Никто не находил?", "I think I left my phone here. Has anyone found it?"],
+      ["Как он выглядит?", "What does it look like?"],
+      ["Чёрный телефон в синем чехле.", "A black phone in a blue case."],
+      ["Минутку, я уточню у коллег.", "One moment, I’ll check with my colleagues."]
+    ]
+  },
+  {
+    "id": "phone-call",
+    "category": "work",
+    "level": "A2",
+    "title": "ტელეფონით შეტყობინების დატოვება",
+    "english": "Leaving a phone message",
+    "speakers": [
+      "თანამშრომელი",
+      "მომრეკავი"
+    ],
+    "lines": [
+      ["Добрый день! Слушаю вас.", "Good afternoon! How can I help?"],
+      ["Здравствуйте. Можно поговорить с Ольгой?", "Hello. Could I speak to Olga?"],
+      ["Сейчас её нет. Хотите что-нибудь передать?", "She’s not here right now. Would you like to leave a message?"],
+      ["Да, попросите её перезвонить мне после двух.", "Yes, please ask her to call me back after two."],
+      ["Хорошо, обязательно передам.", "Of course, I’ll pass that on."]
+    ]
+  },
+  {
+    "id": "work-meeting",
+    "category": "work",
+    "level": "A2",
+    "title": "შეხვედრის დროის შეცვლა",
+    "english": "Moving a meeting",
+    "speakers": [
+      "თანამშრომელი",
+      "თანამშრომელი"
+    ],
+    "lines": [
+      ["Привет! У тебя есть минутка?", "Hi! Do you have a minute?"],
+      ["Да, конечно. Что случилось?", "Yes, of course. What happened?"],
+      ["Можно перенести нашу встречу на завтра?", "Could we move our meeting to tomorrow?"],
+      ["Да, давай в одиннадцать. Подойдёт?", "Sure, let’s do eleven. Does that work?"],
+      ["Да, спасибо. Я пришлю новое приглашение.", "Yes, thanks. I’ll send a new invitation."]
+    ]
+  },
+  {
+    "id": "class",
+    "category": "work",
+    "level": "A1",
+    "title": "გაკვეთილზე დახმარების თხოვნა",
+    "english": "Asking for help in class",
+    "speakers": [
+      "მასწავლებელი",
+      "მოსწავლე"
+    ],
+    "lines": [
+      ["Всё понятно? Есть вопросы?", "Is everything clear? Any questions?"],
+      ["Да, я не понимаю это слово. Что оно значит?", "Yes, I don’t understand this word. What does it mean?"],
+      ["Оно значит «очень быстро». Сейчас покажу пример.", "It means “very quickly.” I’ll show you an example now."],
+      ["Можете написать его на доске?", "Could you write it on the board?"],
+      ["Конечно. Запишите, пожалуйста.", "Of course. Please write it down."]
+    ]
+  },
+  {
+    "id": "email",
+    "category": "work",
+    "level": "A2",
+    "title": "ფაილის გაგზავნა",
+    "english": "Sending a file",
+    "speakers": [
+      "თანამშრომელი",
+      "თანამშრომელი"
+    ],
+    "lines": [
+      ["Ты уже отправил мне файл?", "Have you sent me the file yet?"],
+      ["Да, только что отправил по почте. Получил?", "Yes, I just emailed it. Did you get it?"],
+      ["Пока нет. Можешь отправить ещё раз?", "Not yet. Can you send it again?"],
+      ["Конечно. Заодно пришлю ссылку в чат.", "Of course. I’ll send the link in the chat as well."],
+      ["Спасибо. Вот теперь открылось.", "Thanks. It opened this time."]
+    ]
+  },
+  {
+    "id": "clinic",
+    "category": "health",
+    "level": "A2",
+    "title": "ექიმთან ვიზიტის ჩაწერა",
+    "english": "Booking a doctor’s appointment",
+    "speakers": [
+      "რეგისტრატორი",
+      "პაციენტი"
+    ],
+    "lines": [
+      ["Здравствуйте, поликлиника. Чем могу помочь?", "Hello, this is the clinic. How can I help?"],
+      ["Добрый день. Хочу записаться к врачу на этой неделе.", "Good afternoon. I’d like to book a doctor’s appointment this week."],
+      ["Есть свободное время в четверг в половине третьего.", "There’s an opening on Thursday at half past two."],
+      ["Мне подходит. Что нужно взять с собой?", "That works for me. What do I need to bring?"],
+      ["Возьмите паспорт и приходите минут на десять раньше.", "Bring your passport and arrive about ten minutes early."]
+    ]
+  },
+  {
+    "id": "not-well",
+    "category": "health",
+    "level": "A1",
+    "title": "როცა თავს ცუდად გრძნობ",
+    "english": "Feeling unwell",
+    "speakers": [
+      "მეგობარი",
+      "მეგობარი"
+    ],
+    "lines": [
+      ["Ты в порядке? У тебя усталый вид.", "Are you okay? You look tired."],
+      ["Не очень. У меня болит голова.", "Not really. I have a headache."],
+      ["Хочешь присесть? Принести воды?", "Would you like to sit down? Shall I get you some water?"],
+      ["Да, пожалуйста. Мне нужно немного отдохнуть.", "Yes, please. I need to rest for a bit."],
+      ["Хорошо, я побуду рядом.", "Okay, I’ll stay with you."]
+    ]
+  },
+  {
+    "id": "getting-help",
+    "category": "health",
+    "level": "A2",
+    "title": "დახმარების გამოძახება",
+    "english": "Calling for help",
+    "speakers": [
+      "გამვლელი",
+      "გამვლელი"
+    ],
+    "lines": [
+      ["Вам нужна помощь?", "Do you need help?"],
+      ["Да, пожалуйста, вызовите скорую. Человеку стало плохо.", "Yes, please call an ambulance. Someone has fallen ill."],
+      ["Хорошо, звоню. Какой здесь адрес?", "Okay, I’m calling. What’s the address here?"],
+      ["Мы у входа в торговый центр, на улице Ленина, дом десять.", "We’re at the shopping centre entrance, 10 Lenin Street."],
+      ["Понятно. Останьтесь здесь, я скажу, где мы.", "Got it. Stay here; I’ll tell them where we are."]
     ]
   }
 ]
