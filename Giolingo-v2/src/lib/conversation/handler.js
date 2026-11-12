@@ -1,9 +1,9 @@
 import { ConversationError, generateTurn } from "./gemini.js";
 import {
-  boundedText, historyLimit, languages, levels, messageLimit, optionLimit,
+  boundedText, historyLimit, inputLimit, languages, levels, messageLimit, optionLimit,
 } from "./shared.js";
 
-const bodyLimit = 16 * 1024;
+const bodyLimit = 56 * 1024;
 
 function reply(body, status = 200) {
   return Response.json(body, { status, headers: { "Cache-Control": "no-store" } });
@@ -52,13 +52,19 @@ export async function handleConversation(request) {
   if (typeof language !== "string" || !Object.hasOwn(languages, language) ||
       typeof level !== "string" || !Object.hasOwn(levels, level) ||
       !Array.isArray(history) || history.length > historyLimit ||
-      !history.every((entry) => boundedText(entry?.message, messageLimit) &&
-        boundedText(entry?.answer, optionLimit))) {
+      !history.every((entry, index) => {
+        if (!entry || (entry.kind !== undefined && entry.kind !== "text")) return false;
+        const typed = entry.kind === "text";
+        const hasPrompt = boundedText(entry.message, messageLimit) || (typed && index === 0 && entry.message === "");
+        return hasPrompt && boundedText(entry.answer, typed ? inputLimit : optionLimit);
+      })) {
     return reply({ error: "ენის, დონის ან დიალოგის მონაცემები არასწორია." }, 400);
   }
 
   try {
-    const turns = history.map(({ message, answer }) => ({ message, answer }));
+    const turns = history.map(({ message, answer, kind }) => ({
+      message, answer: answer.trim(), kind: kind ?? "choice",
+    }));
     return reply(await generateTurn({ language, level, history: turns }, request.signal));
   } catch (error) {
     if (error instanceof ConversationError) return reply({ error: error.message }, error.status);
